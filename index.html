@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoran DTHREE</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #d35400;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #d35400;
+            font-weight: bold;
+            margin: 0 8px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 12px;
+        }
+
+        .menu-img {
+            width: 120px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+
+        .menu-info {
+            flex-grow: 1;
+        }
+
+        .harga {
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin: 8px;
+            border-radius: 8px;
+        }
+
+        .promo-banner {
+            background: #d35400;
+            color: #fff;
+            padding: 18px 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .promo-banner h3 { margin: 0 0 6px; }
+        .promo-banner p { margin: 0; }
+
+        .voucher {
+            display: flex;
+            border: 2px dashed #d35400;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            background: #fff8f2;
+        }
+
+        .voucher-nilai {
+            flex: 0 0 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #d35400;
+            border-right: 2px dashed #d35400;
+            padding: 10px;
+        }
+
+        .voucher-info {
+            flex-grow: 1;
+            padding: 12px 15px;
+        }
+
+        .voucher-info h3 { margin: 0 0 4px; }
+        .voucher-info p { margin: 4px 0; font-size: 14px; }
+
+        .kode {
+            display: inline-block;
+            font-family: monospace;
+            font-weight: bold;
+            background: #fff;
+            border: 1px solid #d35400;
+            border-radius: 4px;
+            padding: 3px 8px;
+            margin-right: 6px;
+        }
+
+        .btn-salin {
+            background: #d35400;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-salin:hover { background: #b84500; }
+
+        .coret {
+            text-decoration: line-through;
+            color: #888;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 500px) {
+            .voucher { flex-direction: column; }
+            .voucher-nilai { flex: none; border-right: none; border-bottom: 2px dashed #d35400; }
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+        }
+
+        /* Tambahan CSS untuk Form Pemesanan */
+        .form-pemesanan {
+            background: #fff8f2;
+            padding: 20px;
+            border: 2px solid #d35400;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .menu-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-checkbox label {
+            width: 100px;
+            margin: 0 10px;
+            font-weight: normal;
+        }
+
+        .jumlah-item {
+            width: 120px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .logo-pembayaran {
+            height: 20px;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        .radio-group {
+            margin-bottom: 10px;
+        }
+
+        .radio-group label {
+            display: inline-block;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+
+        .btn-submit {
+            background: #d35400;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #b84500;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🍽️ RESTORAN DTHREE</h1>
+    <p>Daftar Menu Makanan dan Minuman</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a> |
+    <a href="#pemesanan">Pemesanan</a> |
+    <a href="#promo">Promo</a> |
+    <a href="#profil">Profil</a> |
+    <a href="#about">About</a> |
+    <a href="#gallery">Gallery</a> |
+    <a href="#kontak">Kontak</a>
+</nav>
+
+<section id="home">
+
+    <h2>Selamat Datang di Restoran DTHREE</h2>
+
+    <p>
+        Selamat datang di Restoran DTHREE! Kami menyediakan berbagai
+        macam makanan dan minuman lezat dengan bahan berkualitas dan
+        harga yang terjangkau. Silakan pilih menu favorit Anda.
+    </p>
+
+    <h2>Daftar Menu</h2>
+
+    <div class="menu-item">
+        <img class="menu-img"
+             src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80"
+             alt="Nasi Goreng">
+
+        <div class="menu-info">
+            <h3>Nasi Goreng</h3>
+            <p>Nasi goreng spesial dengan telur dan ayam.</p>
+            <p class="harga">Rp15.000</p>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        <img class="menu-img"
+             src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80"
+             alt="Ayam Goreng">
+
+        <div class="menu-info">
+            <h3>Ayam Goreng</h3>
+            <p>Ayam goreng gurih dengan sambal dan lalapan.</p>
+            <p class="harga">Rp20.000</p>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        <img class="menu-img"
+             src="https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=600&q=80"
+             alt="Mie Goreng">
+
+        <div class="menu-info">
+            <h3>Mie Goreng</h3>
+            <p>Mie goreng spesial dengan sayuran dan telur.</p>
+            <p class="harga">Rp14.000</p>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        <img class="menu-img"
+             src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80"
+             alt="Es Teh">
+
+        <div class="menu-info">
+            <h3>Es Teh Manis</h3>
+            <p>Teh manis segar dengan es batu.</p>
+            <p class="harga">Rp5.000</p>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        <img class="menu-img"
+             src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80"
+             alt="Es Krim">
+
+        <div class="menu-info">
+            <h3>Es Krim</h3>
+            <p>Es krim lembut dengan berbagai pilihan rasa.</p>
+            <p class="harga">Rp10.000</p>
+        </div>
+    </div>
+
+</section>
+
+<!-- Form Pemesanan Baru yang Ditambahkan -->
+<section id="pemesanan">
+    <h2>Form Pemesanan Tempat & Menu</h2>
+    
+    <div class="form-pemesanan">
+        <form action="#" method="POST">
+            <!-- Textbox Nama dan No HP -->
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nohp">No. HP</label>
+                <input type="text" id="nohp" name="nohp" class="form-control" placeholder="Masukkan nomor handphone" required>
+            </div>
+
+            <!-- Input Date Tanggal Booking -->
+            <div class="form-group">
+                <label for="tanggal">Tanggal Booking</label>
+                <input type="date" id="tanggal" name="tanggal" class="form-control" required>
+            </div>
+
+            <!-- Checkbox Menu dan Textbox Jumlah -->
+            <div class="form-group">
+                <label>Pilihan Kategori Menu</label>
+                
+                <div class="menu-checkbox">
+                    <input type="checkbox" id="menu_makanan" name="kategori_menu" value="makanan">
+                    <label for="menu_makanan">Makanan</label>
+                    <input type="text" name="jumlah_makanan" class="jumlah-item" placeholder="Jumlah item">
+                </div>
+                
+                <div class="menu-checkbox">
+                    <input type="checkbox" id="menu_minuman" name="kategori_menu" value="minuman">
+                    <label for="menu_minuman">Minuman</label>
+                    <input type="text" name="jumlah_minuman" class="jumlah-item" placeholder="Jumlah item">
+                </div>
+
+                <div class="menu-checkbox">
+                    <input type="checkbox" id="menu_dessert" name="kategori_menu" value="dessert">
+                    <label for="menu_dessert">Dessert</label>
+                    <input type="text" name="jumlah_dessert" class="jumlah-item" placeholder="Jumlah item">
+                </div>
+            </div>
+
+            <!-- Radio Button Pembayaran dan Logo -->
+            <div class="form-group">
+                <label>Pilihan Pembayaran</label>
+                
+                <div class="radio-group">
+                    <input type="radio" id="bayar_kartu" name="pembayaran" value="kartu_kredit_debit">
+                    <label for="bayar_kartu">Kartu Debit/Kredit</label>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" class="logo-pembayaran">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="logo-pembayaran">
+                    
+                    <div style="margin-top: 8px;">
+                        <input type="text" name="nomor_kartu" class="form-control" placeholder="Masukkan nomor kartu Anda">
+                    </div>
+                </div>
+
+                <div class="radio-group" style="margin-top: 15px;">
+                    <input type="radio" id="bayar_dompet" name="pembayaran" value="dompet_digital">
+                    <label for="bayar_dompet">Dompet Digital</label>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" alt="GoPay" class="logo-pembayaran">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg" alt="OVO" class="logo-pembayaran" style="height: 15px;">
+                </div>
+            </div>
+
+            <!-- Button Submit -->
+            <button type="submit" class="btn-submit">Submit Pemesanan</button>
+        </form>
+    </div>
+</section>
+
+<section id="promo">
+
+    <h2>Promo &amp; Voucher</h2>
+
+    <div class="promo-banner">
+        <h3>🎉 Promo Spesial Bulan Ini</h3>
+        <p>Tunjukkan kode voucher ke kasir sebelum membayar.</p>
+    </div>
+
+    <div class="voucher">
+        <div class="voucher-nilai">Diskon<br>20%</div>
+        <div class="voucher-info">
+            <h3>Voucher Pelanggan Baru</h3>
+            <p>Diskon 20% untuk pembelian pertama, minimal belanja Rp30.000.</p>
+            <p>
+                <span class="kode">BARU20</span>
+                <button class="btn-salin" data-kode="BARU20">Salin</button>
+            </p>
+            <p>Berlaku s/d 31 Desember 2026</p>
+        </div>
+    </div>
+
+    <div class="voucher">
+        <div class="voucher-nilai">Rp10.000</div>
+        <div class="voucher-info">
+            <h3>Voucher Potongan Harga</h3>
+            <p>Potongan Rp10.000 untuk minimal belanja Rp50.000.</p>
+            <p>
+                <span class="kode">HEMAT10</span>
+                <button class="btn-salin" data-kode="HEMAT10">Salin</button>
+            </p>
+            <p>Berlaku s/d 31 Desember 2026</p>
+        </div>
+    </div>
+
+    <div class="voucher">
+        <div class="voucher-nilai">Gratis<br>Es Teh</div>
+        <div class="voucher-info">
+            <h3>Gratis Es Teh Manis</h3>
+            <p>Gratis 1 Es Teh Manis setiap pembelian Ayam Goreng.</p>
+            <p>
+                <span class="kode">GRATISTEH</span>
+                <button class="btn-salin" data-kode="GRATISTEH">Salin</button>
+            </p>
+            <p>Berlaku setiap hari</p>
+        </div>
+    </div>
+
+    <h3>Paket Hemat</h3>
+
+    <div class="menu-item">
+        <div class="menu-info">
+            <h3>Paket Nasi Goreng + Es Teh</h3>
+            <p>Nasi Goreng dan Es Teh Manis dalam satu paket.</p>
+            <p class="harga"><span class="coret">Rp20.000</span>Rp17.000</p>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        <div class="menu-info">
+            <h3>Paket Ayam Goreng + Es Krim</h3>
+            <p>Ayam Goreng dengan sambal dan lalapan, plus Es Krim.</p>
+            <p class="harga"><span class="coret">Rp30.000</span>Rp25.000</p>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        <div class="menu-info">
+            <h3>Paket Keluarga (4 orang)</h3>
+            <p>2 Nasi Goreng, 2 Ayam Goreng, dan 4 Es Teh Manis.</p>
+            <p class="harga"><span class="coret">Rp90.000</span>Rp75.000</p>
+        </div>
+    </div>
+
+    <h3>Promo Lainnya</h3>
+
+    <ul>
+        <li><b>Happy Hour</b> : Diskon 15% semua minuman, Senin - Jumat pukul 14.00 - 16.00 WIB.</li>
+        <li><b>Member DTHREE</b> : Kumpulkan 10 stempel, gratis 1 menu makanan pilihan.</li>
+        <li><b>Promo Ulang Tahun</b> : Gratis Es Krim dengan menunjukkan KTP di bulan ulang tahun Anda.</li>
+        <li><b>Promo Weekend</b> : Beli 2 Mie Goreng, gratis 1 Es Teh Manis (Sabtu - Minggu).</li>
+    </ul>
+
+    <p><small>*Syarat dan ketentuan berlaku. Promo tidak dapat digabung kecuali disebutkan lain.</small></p>
+
+</section>
+
+<script>
+    document.querySelectorAll('.btn-salin').forEach(function (tombol) {
+        tombol.addEventListener('click', function () {
+            var kode = tombol.getAttribute('data-kode');
+            var selesai = function () {
+                tombol.textContent = 'Tersalin!';
+                setTimeout(function () { tombol.textContent = 'Salin'; }, 1500);
+            };
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(kode).then(selesai);
+            } else {
+                selesai();
+            }
+        });
+    });
+</script>
+
+<section id="profil">
+
+    <h2>Profil Restoran</h2>
+
+    <p>
+        Restoran DTHREE merupakan restoran yang menyediakan
+        berbagai macam makanan dan minuman khas Indonesia.
+    </p>
+
+    <p>
+        Kami mengutamakan rasa, kualitas bahan, kebersihan,
+        dan pelayanan yang baik kepada pelanggan.
+    </p>
+
+    <h3>Visi</h3>
+
+    <p>
+        Menjadi restoran pilihan masyarakat dengan makanan
+        berkualitas dan harga terjangkau.
+    </p>
+
+    <h3>Misi</h3>
+
+    <p>
+        Memberikan pelayanan terbaik dan menyediakan makanan
+        yang lezat serta berkualitas.
+    </p>
+
+</section>
+
+<section id="about">
+
+    <h2>About Restoran DTHREE</h2>
+
+    <h3>Kenapa Memilih Kami?</h3>
+
+    <ul>
+        <li>Makanan berkualitas</li>
+        <li>Harga terjangkau</li>
+        <li>Pelayanan ramah</li>
+        <li>Tempat nyaman</li>
+        <li>Menu makanan beragam</li>
+    </ul>
+
+    <h3>Jam Operasional</h3>
+
+    <p>
+        Senin - Jumat : 09.00 - 21.00 WIB
+        <br>
+        Sabtu - Minggu : 09.00 - 22.00 WIB
+    </p>
+
+</section>
+
+<section id="gallery">
+
+    <h2>Gallery Restoran</h2>
+
+    <div class="gallery">
+
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80"
+             alt="Nasi Goreng">
+
+        <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80"
+             alt="Ayam Goreng">
+
+        <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=600&q=80"
+             alt="Mie Goreng">
+
+        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80"
+             alt="Es Teh">
+
+    </div>
+
+</section>
+
+<section id="kontak">
+
+    <h2>Kontak Restoran</h2>
+
+    <p>
+        <b>Restoran DTHREE</b>
+        <br>
+        Jl. Raya Bintaro No. 10
+        <br>
+        Tangerang Selatan, Banten
+        <br>
+        Indonesia
+    </p>
+
+    <p>
+        Telepon : 021-12345678
+        <br>
+        Email :
+        <a href="mailto:restorannusantara@gmail.com">
+            restoranDTRHEE@gmail.com
+        </a>
+    </p>
+
+    <p>
+        <a href="https://www.google.com" target="_blank">
+            Kunjungi Google
+        </a>
+    </p>
+
+</section>
+
+<footer>
+    <p>
+        &copy; 2026 Restoran DTHREE | Selamat Menikmati 🍴
+    </p>
+</footer>
+
+</body>
+</html>
